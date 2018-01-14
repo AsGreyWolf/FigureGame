@@ -28,7 +28,7 @@ float triangleCircle(vec2 pos, float c){
     float L = sqrt(R*R - (h*h+a*a)/4.0);
     vec2 dir = normalize(vec2(-h, -a));
     center = vec2(a/2.0,h/2.0) + dir*L;
-		pos-=center;
+	pos-=center;
     if(dot(pos,pos)>R*R) return 0.0;
     return 1.0;
 }
@@ -41,30 +41,18 @@ float circleSquare(vec2 pos, float c){
         return 0.0;
     return 1.0;
 }
-float squareTriangle(vec2 pos, float c){
-    if(c<0.5)
-        return circleSquare(pos,1.0-c*2.0);
-    c-=0.5;
-    return triangleCircle(pos,1.0-c*2.0);
-}
 float quintic(float t){
 	return t * t * t * (t * (t * 6.0 - 15.0) + 10.0);
 }
 float coeff(){
 	float t = in_time;
-    t -= floor(t);
-    t *= 2.0;
-    if(t<=1.0)
-        return t;
-    return 2.0-t;
+    t = 2.0 * (t - floor(t));
+    return clamp(t, 0.0, 1.0) - mix(0.0, 1.0, clamp(t - 1.0, 0.0, 1.0));
 }
 float coeff2(){
     float t = in_time/3.0;
-    t -= floor(t);
-    t *= 2.0;
-    if(t<=1.0)
-        return t;
-    return 2.0-t;
+    t = 2.0 * (t - floor(t));
+    return clamp(t, 0.0, 1.0) - mix(0.0, 1.0, clamp(t - 1.0, 0.0, 1.0));
 }
 uniform vec3 in_color;
 uniform vec3 in_form;
@@ -72,26 +60,14 @@ void main() {
 	vec2 pos = ex_texcord * 2.0 - vec2(1.0, 1.0);
 	float t = clamp((in_time-in_form.z)*3.0,0.0,1.0);
 	float fi = (quintic(t)*0.0+quintic(coeff2())/4.0-1.0/8.0)*3.1415926535897932384626433832795;
-	pos = vec2(pos.x*cos(fi)-pos.y*sin(fi),pos.x*sin(fi)+pos.y*cos(fi));
-	pos*=1.414;
-	float a;
-    if(in_form.x < 0.5){
-    	if(in_form.y < 1.5)
-    		a=squareTriangle(pos,quintic(1.0-t));
-    	else
-    		a=circleSquare(pos,quintic(t));
-    }
-    else if(in_form.x < 1.5){
-    	if(in_form.y < 0.5)
-    		a=squareTriangle(pos,quintic(t));
-    	else
-    		a=triangleCircle(pos,quintic(1.0-t));
+	pos = mat2(cos(fi), sin(fi), -sin(fi), cos(fi)) * pos * 1.414;
+	t = mix(in_form.y, in_form.x, clamp(quintic(t), 0.0, 1.0));
+	float a = 0.0;
+    if(t < 1.0){
+    	a=circleSquare(pos, 1.0 - t);
     }
     else{
-    	if(in_form.y < 0.5)
-    		a=circleSquare(pos,quintic(1.0-t));
-    	else
-    		a=triangleCircle(pos,quintic(t));
+    	a=triangleCircle(pos, 2.0 - t);
     }
 	gl_FragColor = vec4(in_color,a);
 }

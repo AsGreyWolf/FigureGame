@@ -1,7 +1,7 @@
 package ru.asgreywolf.neofall.game;
 
 public enum PlayerForm {
-    SQUARE(0.0f), TRIANGLE(1.0f), CIRCLE(2.0f), DEFAULT(0.0f), INVALID(-1.0f);;
+    SQUARE(0.0f), CIRCLE(1.0f), TRIANGLE(2.0f),  DEFAULT(0.0f), INVALID(-1.0f);;
 
     private final float value;
 
