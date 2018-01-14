@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true" >
+
+    <!-- android:drawableLeft="@drawable/ic_launcher" -->
+
+    <LinearLayout
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/amazing"
+            android:text="@string/amazing"
+            android:fontFamily="monospace"
+            android:textColor="@android:color/white"
+            android:textSize="20dp"
+            android:visibility="gone"
+            android:textStyle="bold"/>
+        <TextView
+            android:layout_gravity="center"
+            android:id="@+id/points"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="100500"
+            android:fontFamily="monospace"
+            android:textColor="@android:color/white"
+            android:textSize="60dp"
+            android:textStyle="bold"/>
+        <LinearLayout
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/best_score"
+                android:fontFamily="monospace"
+                android:textColor="@android:color/white"
+                android:textSize="20dp"
+                android:textStyle="bold"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/best_score"
+                android:text="100500"
+                android:fontFamily="monospace"
+                android:textColor="@android:color/white"
+                android:textSize="20dp"
+                android:textStyle="bold"/>
+        </LinearLayout>
+        <Button
+            android:layout_gravity="center"
+            android:id="@+id/playButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_play_arrow_white_48dp"
+            android:text="@string/button_play"
+            android:background="@android:color/transparent"
+            android:fontFamily="monospace"
+            android:textColor="@android:color/white"
+            android:textSize="@android:dimen/app_icon_size"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <Button
+            android:id="@+id/settingsButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@drawable/ic_settings_white_48dp"
+            android:textColor="@android:color/white" />
+    </FrameLayout>
+
+</FrameLayout>

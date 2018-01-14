@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Neofall</string>
+    <string name="amazing">WOW! WOW! AMAZING! WOW! OMG!</string>
+    <string name="best_score">Best score: </string>
+    <string name="button_play">Play </string>
+    <string name="button_resume">Resume </string>
+    <string name="settings_sound">Sound </string>
+    <string name="settings_vibro">Vibration </string>
+
+</resources>
